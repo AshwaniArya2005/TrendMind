@@ -7,8 +7,17 @@ import CssBaseline from '@mui/material/CssBaseline';
 import HomePage from './pages/HomePage';
 import DiscoverPage from './pages/DiscoverPage';
 import ModelDetailsPage from './pages/ModelDetailsPage';
+import ComparisonPage from './pages/ComparisonPage';
 import AboutPage from './pages/AboutPage';
 import FaqPage from './pages/FaqPage';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import PreferencePage from './pages/PreferencePage';
+import ProfilePage from './pages/ProfilePage';
+
+// Components
+import ProtectedRoute from './components/ProtectedRoute';
 
 // Create a custom theme
 const theme = createTheme({
@@ -19,14 +28,18 @@ const theme = createTheme({
       dark: '#0a2334',
     },
     secondary: {
-      main: '#4caf50',
-      light: '#80e27e',
-      dark: '#087f23',
+      main: '#db7093', // Pink accent from the UI design
+      light: '#e698b0',
+      dark: '#ad4e70',
     },
     background: {
       default: '#f8f9fa',
       paper: '#ffffff',
     },
+    text: {
+      primary: '#333333',
+      secondary: '#546e7a',
+    }
   },
   typography: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -54,22 +67,64 @@ const theme = createTheme({
       fontFamily: '"Playfair Display", serif',
       fontWeight: 500,
     },
+    button: {
+      textTransform: 'none',
+      fontWeight: 500,
+    }
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 8,
+          borderRadius: 20,
           textTransform: 'none',
           fontWeight: 500,
+          boxShadow: 'none',
+          minWidth: '100px',
+          padding: '6px 16px',
+        },
+        contained: {
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          '&:hover': {
+            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+          },
+        },
+        outlined: {
+          borderWidth: '1px',
+          '&:hover': {
+            borderWidth: '1px',
+          }
         },
       },
     },
     MuiCard: {
       styleOverrides: {
         root: {
+          borderRadius: 8,
+          boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
           borderRadius: 12,
-          boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+          fontWeight: 500,
+          padding: '0 2px',
+          '& .MuiChip-label': {
+            padding: '0 10px',
+          },
+        },
+        sizeSmall: {
+          height: 24,
+          fontSize: '0.75rem',
+        },
+      },
+    },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#e0e9ef',
         },
       },
     },
@@ -84,8 +139,38 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/discover" element={<DiscoverPage />} />
         <Route path="/model/:id" element={<ModelDetailsPage />} />
+        <Route path="/compare" element={<ComparisonPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/faq" element={<FaqPage />} />
+        
+        {/* Authentication routes - don't allow logged in users */}
+        <Route path="/register" element={
+          <ProtectedRoute requireAuth={false}>
+            <RegisterPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/login" element={
+          <ProtectedRoute requireAuth={false}>
+            <LoginPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/forgot-password" element={
+          <ProtectedRoute requireAuth={false}>
+            <ForgotPasswordPage />
+          </ProtectedRoute>
+        } />
+        
+        {/* Protected routes - require authentication */}
+        <Route path="/preferences" element={
+          <ProtectedRoute>
+            <PreferencePage />
+          </ProtectedRoute>
+        } />
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        } />
       </Routes>
     </ThemeProvider>
   );

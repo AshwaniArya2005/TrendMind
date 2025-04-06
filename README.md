@@ -1,91 +1,93 @@
-# TrendMind - AI Model Discovery Platform
+# TrendMind
 
-TrendMind is a modern web application for discovering, comparing, and learning about the latest AI models. This platform provides a user-friendly interface to browse AI models across different categories and access detailed information about each model.
-
-![TrendMind Screenshot](/screenshots/homepage.png)
+A Next.js application for discovering, comparing, and tracking trending AI models from Hugging Face.
 
 ## Features
 
-- **Discover AI Models**: Browse through a comprehensive collection of AI models
-- **Detailed Model Information**: Access specifications, performance metrics, and usage examples
-- **Compare Models**: Side-by-side comparison of different AI models
-- **Filtering & Sorting**: Find models by category, popularity, or specific criteria
-- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Explore trending models**: View the latest and most popular models from Hugging Face
+- **Model comparison**: Compare up to 3 models side-by-side with detailed metrics
+- **Favorites**: Save your favorite models for quick access
+- **Model details**: Comprehensive information about each model
 
 ## Tech Stack
 
-- **Frontend**: React, Material UI
-- **Routing**: React Router
-- **Styling**: Emotion (CSS-in-JS)
+- **Framework**: Next.js (React)
+- **Styling**: Tailwind CSS
+- **Data Source**: Hugging Face API
+- **State Management**: React Hooks
+- **Storage**: Local Storage for favorites and comparison data
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (v14.0.0 or higher)
-- npm (v6.0.0 or higher)
+- Node.js 14+ and npm/yarn
 
 ### Installation
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/trendmind.git
-   cd trendmind
-   ```
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/trendmind.git
+cd trendmind
+```
 
-2. Install dependencies:
-   ```
-   npm install
-   ```
+2. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
 
-3. Start the development server:
-   ```
-   npm start
-   ```
+3. Create a `.env` file in the root directory and add:
+```
+HF_API_URL=https://huggingface.co/api
+```
 
-4. Open your browser and navigate to `http://localhost:3000`
+4. Start the development server
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+5. Open your browser and go to `http://localhost:3000`
 
 ## Project Structure
 
 ```
 trendmind/
-├── public/               # Public assets
-├── src/                  # Source files
-│   ├── assets/           # Images and other static files
+├── src/
 │   ├── components/       # Reusable components
-│   ├── pages/            # Page components
-│   ├── App.js            # Main App component
-│   └── index.js          # Application entry point
-├── package.json          # Dependencies and scripts
-└── README.md             # Project documentation
+│   ├── pages/            # Next.js pages
+│   ├── services/         # API services
+│   └── styles/           # Global styles
+├── public/               # Static assets
+├── .env                  # Environment variables
+├── next.config.js        # Next.js configuration
+├── tailwind.config.js    # Tailwind CSS configuration
+└── package.json          # Project dependencies
 ```
-
-## Customization
-
-### Adding New Models
-
-To add new models to the application, update the mock data in the corresponding page components. In a production environment, you would typically fetch this data from an API.
-
-### Styling
-
-The application uses Material UI's theming system. You can customize the theme in `App.js`.
 
 ## Deployment
 
-To build the application for production:
+This project can be deployed on any platform that supports Next.js, such as Vercel or Netlify.
 
-```
+```bash
+# Build for production
 npm run build
+# or
+yarn build
+
+# Start production server
+npm run start
+# or
+yarn start
 ```
 
-This creates an optimized production build in the `build` folder that can be deployed to any static hosting service.
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Design inspired by modern SaaS and discovery platforms
-- Icons from Material Icons
-- Font from Google Fonts (Roboto and Playfair Display) 
+This project is licensed under the MIT License. 
